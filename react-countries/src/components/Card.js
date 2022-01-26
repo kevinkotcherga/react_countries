@@ -1,10 +1,19 @@
 import React from 'react';
 
-const Card = () => {
+const Card = (props) => {
+  const { country } = props;
+  console.log(country);
   return (
-    <div>
-      Card
-    </div>
+    <li className='card'>
+      <img src={country.flags.png} alt="flag"/>
+      <div className='data-container'>
+        <ul>
+          <li>{country.name.common}</li>
+          <li>{country.capital}</li>
+          <li>{country.population}</li>
+        </ul>
+      </div>
+    </li>
   );
 };
 
