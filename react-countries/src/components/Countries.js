@@ -12,10 +12,13 @@ const Countries = () => {
 
   }, []);
 
-
   return (
-    <div>
-
+    <div className='countries'>
+      <ul className="countries-list">
+        {data.map((country) => (
+          <li>{country.name.common}</li>
+        ))}
+      </ul>
     </div>
   );
 };
