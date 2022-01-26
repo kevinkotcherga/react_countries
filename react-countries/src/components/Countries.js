@@ -4,14 +4,26 @@ import Card from './Card';
 
 const Countries = () => {
   const [data, setData] = useState([]);
+  const [sortedData, setSortedData]= useState([]);
+  const [playOnce, setPlayOnce] =  useState(true);
 
   useEffect(() => {
+    if (playOnce) {
+      axios.get('https://restcountries.com/v3.1/all').then((res) => {
+        setData(res.data)
+        setPlayOnce(false);
+      });
+    }
 
-    axios.get('https://restcountries.com/v3.1/all').then((res) => setData(res.data));
-
-    console.log(data);
-
-  }, []);
+    const sortedCountry = () => {
+      const countryObj = Object.keys(data).map((i) => data[i]);
+      const sortedArray = countryObj.sort((a,b) => {
+        return b.population - a.population
+      });
+      console.log(sortedArray)
+    };
+    sortedCountry();
+  }, [data]);
 
   return (
     <div className='countries'>
